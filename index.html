@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="start-btn">start</button>
+    <button id="stop-btn">stop</button>
+    <div id="result-div"></div>
+
+    <script>
+        const startBtn = document.querySelector('#start-btn');
+        const stopBtn = document.querySelector('#stop-btn');
+        const resultDiv = document.querySelector('#result-div');
+
+        //音声認識機能の呼出
+        SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.lang = 'ja-JP';
+        recognition.interimResults = true;
+        recognition.continuous = true; // これこれ
+
+        let finalTranscript = "";
+
+        recognition.onresult = (event) => {
+            let interimTranscript = "";
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                let transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    transcript = transcript
+                        .replace(/アジェンダ/g, '議題')
+                        .replace(/コンセンサス/g, '合意')
+                        .replace(/イニシアチブ/g, '主導権')
+                        .replace(/アサイン/g, '割り当て')
+                        .replace(/コミット/g, '責任を持つ')
+                        .replace(/エビデンス/g, '証拠')
+                        .replace(/フィードバック/g, '意見')
+                        .replace(/リスケ/g, '予定変更')
+                        .replace(/リソース/g, '資源')
+                        .replace(/ペンディング/g, '保留')
+                        .replace(/アウトプット/g, '成果物')
+                        .replace(/インプット/g, '情報収集')
+                        .replace(/キャパ/g, '容量')
+                        .replace(/スキーム/g, '計画')
+                        .replace(/マイルストーン/g, '節目')
+                        .replace(/デフォルト/g, '標準設定')
+                        .replace(/バジェット/g, '予算')
+                        .replace(/ベネフィット/g, '利益')
+                        .replace(/アーリーアダプター/g, '早期導入者')
+                        .replace(/アライアンス/g, '提携')
+                        .replace(/バッファ/g, '余裕')
+                        .replace(/パラダイム/g, '枠組み')
+                        .replace(/シナジー/g, '相乗効果')
+                        .replace(/ピボット/g, '方向転換')
+                        .replace(/イノベーション/g, '革新')
+                        .replace(/インセンティブ/g, '動機づけ')
+                        .replace(/コンプライアンス/g, '法令遵守')
+                        .replace(/オポチュニティ/g, '機会')
+                        .replace(/アプローチ/g, '取り組み')
+                        .replace(/ソリューション/g, '解決策')
+                        .replace(/アドバンテージ/g, '有利な点')
+                        .replace(/エンゲージメント/g, '関与')
+                        .replace(/ブレスト/g, '意見交換')
+                        .replace(/クライアント/g, '顧客')
+                        .replace(/ベンダー/g, '供給業者')
+                        .replace(/ターゲット/g, '目標')
+                        .replace(/ニッチ/g, '隙間市場')
+                        .replace(/アサーション/g, '主張')
+                        .replace(/クロージング/g, '終了')
+                        .replace(/ガバナンス/g, '統治')
+                        .replace(/スコープ/g, '範囲')
+                        .replace(/パフォーマンス/g, '業績')
+                        .replace(/ベストプラクティス/g, '最良の方法')
+                        .replace(/ブリーフィング/g, '説明会')
+                        .replace(/フォローアップ/g, '後追い')
+                        .replace(/コストパフォーマンス/g, '費用対効果')
+                        .replace(/ロードマップ/g, '計画表')
+                        .replace(/バリュー/g, '価値')
+                        .replace(/デリバリー/g, '配達')
+                        .replace(/コンテンツ/g, '内容')
+                        .replace(/フレームワーク/g, '枠組み')
+                        .replace(/モチベーション/g, 'やる気')
+                        .replace(/ガイドライン/g, '指針')
+                        .replace(/リスクマネジメント/g, '危機管理')
+                        .replace(/キャッシュフロー/g, '現金の流れ')
+                        .replace(/データベース/g, '情報集積')
+                        .replace(/サステナビリティ/g, '持続可能性')
+                        .replace(/エコシステム/g, '生態系')
+                        .replace(/ソーシャルキャピタル/g, '社会資本')
+                        .replace(/コンサルティング/g, '相談')
+                        .replace(/ロジスティクス/g, '物流')
+                        .replace(/プロトコル/g, '手順')
+                        .replace(/ブランディング/g, 'ブランド構築')
+                        .replace(/エグゼクティブ/g, '幹部')
+                        .replace(/サマリー/g, '要約');
+
+                    finalTranscript += transcript;
+                } else {
+                    interimTranscript = transcript;
+                }
+            }
+            resultDiv.innerHTML = '<div class="finaltextbox">'+finalTranscript+'</div>' + '<div class="textbox"><i style="color:#ddd;"id="text">' + interimTranscript + '</i></div>';
+
+        }
+        startBtn.onclick = () => {
+            recognition.start();
+        }
+        stopBtn.onclick = () => {
+            recognition.stop();
+        }
+        recognition.start();
+    </script>
+</body>
+
+</html>

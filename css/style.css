@@ -1,0 +1,17 @@
+.finaltextbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+    height: 300px;
+    width: 300px;
+    margin-bottom: 20px;
+}
+.textbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    height: 300px;
+    width: 300px;
+}
