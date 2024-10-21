@@ -3,4 +3,4 @@
 
 これを機に、正しい日本語を話してわかりやすく話をしてみては？
 
-URL:https://gzkakeru-onuki.github.io/-/
+URL:https://gzkakeru-onuki.github.io/IKIRIMOJIBOKUMETUIINKAI/
